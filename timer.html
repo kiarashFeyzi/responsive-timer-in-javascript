@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>free timer</title>
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+<body>
+    <div id="content">
+        <div>
+            <h1 class="caption">welcome to <span class="phrase" id="phrase2" >free timer</span></h1>
+            <p class="caption" id="description" >just set the time and enjoy the timer doing its thing</p>
+            <p class="caption" id="description2" >if you want a countdown<span class="phrase" > more than 7 days</span> , visit our <a href="https://www.google.com/" target="_blank" class="phrase" >pro timer</a> </p>
+            
+        </div>
+
+
+        <div id="mainBox">
+            <div id="day"> 
+                <input type="text" id="textboxOfDays" class="textBoxesOfClock" maxlength="1" placeholder="0"><br><p class="caption" >days</p></input>
+            </div>
+    
+            <div id="clock">
+                <div id="boxes">
+                   
+                    <div class="blocksOfClock"  >
+                       
+                        
+                            <input type="text" id="textboxOfHours" class="textBoxesOfClock" maxlength="2" placeholder="00"><br><p class="caption">hours</p></input>
+                    
+        
+                    </div>
+                    <div><p class="dots" >:</p></div>
+                    <div class="blocksOfClock">
+
+                            <input type="text" id="textboxOfMinutes" class="textBoxesOfClock" maxlength="2" placeholder="00"><br><span class="caption">minutes</span></input>
+                       
+
+                    </div>
+                    <div><p class="dots" >:</p></div>
+                    <div class="blocksOfClock">
+                        <input type="text" id="textboxOfSeconds" class="textBoxesOfClock" maxlength="2" placeholder="00"><br><span class="caption">seconds</span></input>
+                    </div>
+                    <div><p  class="dots" id="dotOfCentiSec">:</p></div>
+                    <div class="blocksOfClock" id="blockOfCentiSecs">
+                        <input type="text" id="textboxOfCentiSecs" class="textBoxesOfClock" maxlength="0" placeholder="00"><br><span class="caption" id="phrase3" >centiseconds</span></input>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+
+        <div id="blockOfStartBtn" >
+            <button id = "buttonOfStartStop">start</button>
+        </div>
+        
+        
+    </div>
+<script src="timer_js.js"></script>
+    
+</body>
+</html>
