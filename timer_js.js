@@ -3,7 +3,6 @@ let processIsGoingOn = false,
 processHasntStartedYet = true;
 
 
-
 let buttonOfStartStop = document.getElementById("buttonOfStartStop");
 
 let days_textField = document.getElementById("textboxOfDays");
@@ -23,8 +22,6 @@ let days, hours, minutes, seconds;
 
 buttonOfStartStop.addEventListener('mouseout', function () {
     this.style.color = '#006699';
-    // this.style.border = '4px solid #99ffcc';
-    // this.style.backgroundColor = '#06062f';
 
 })
 buttonOfStartStop.addEventListener('mouseover', function () {
@@ -71,6 +68,7 @@ let modify = function () {
     else return true;
 }
 
+
 buttonOfStartStop.onclick = function(){
     if(processHasntStartedYet){
 
@@ -102,63 +100,52 @@ buttonOfStartStop.onclick = function(){
         processHasntStartedYet = false;
     }
 
-
-
-
     if(processIsGoingOn){
 
         buttonOfStartStop.innerHTML = "start";
 
         processIsGoingOn = false;
+        return;
     }
     else{
         buttonOfStartStop.innerHTML = "stop";
         
         processIsGoingOn = true;
-        setTimeout(timer, 10);
-        
-    }
 
+        timer();
+    }
+    
 
     
 }
 
 
 let timer = function () {
-  //  let now = Date.now();
-  //  console.log(now)
-    if(!processIsGoingOn)  return;
-    
-    theCountdownValue_centiSecs -= 1;
+
+    let deadLine = Date.now() + (theCountdownValue_centiSecs * 10) ;
+
+    let now,
+        remainingTime;
+
+    let run = function(){
+        if(!processIsGoingOn)  
+            return;
+        
 
 
-    centiSecs -= 1;
-
-    if(centiSecs < 0) {
-        centiSecs = 99;
-        seconds--;
-    }
-    if(seconds < 0){
-        seconds = 59;
-        minutes--;
-    }
-    if(minutes < 0){
-        minutes = 59;
-        hours--;
-    }
-    if(hours < 0){
-        hours = 23;
-        days--;
-    }
-
-    days_textField.value = days;
-    hours_textField.value = hours;
-    minutes_textField.value = minutes;
-    seconds_textField.value = seconds;
-    centiSecs_textField.value = centiSecs;
+        now = Date.now();
 
 
-    if(theCountdownValue_centiSecs == 0) {
+        remainingTime = deadLine - now;
+        theCountdownValue_centiSecs = remainingTime / 10;
+
+        days_textField.value = Math.floor(remainingTime / (24 * 60 * 60 * 1000));
+        hours_textField.value = Math.floor((remainingTime % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+        minutes_textField.value = Math.floor((remainingTime % (60 * 60 * 1000)) / (60 * 1000));
+        seconds_textField.value = Math.floor((remainingTime % (60 * 1000)) / 1000);
+        centiSecs_textField.value = Math.floor((remainingTime % 1000) / 10);
+
+        if(remainingTime < 0) {
             days_textField.value = "";
             hours_textField.value = "";
             minutes_textField.value = "";
@@ -175,11 +162,14 @@ let timer = function () {
             setTimeout(alrt, 100); // i did this because without this, alert() will be executed first
             
             return;
+        }
+        
+      //  console.log(Date.now() - now)
+        setTimeout(run, 7);
     }
 
+    run();
 
- //   console.log(Date.now() - now)
-    setTimeout(timer, 9.52);
 }
 
 
